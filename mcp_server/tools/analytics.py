@@ -367,6 +367,7 @@ class AnalyticsTools:
 
             return {
                 "success": True,
+<<<<<<< HEAD
                 "topic": topic,
                 "date_range": {
                     "start": start_date.strftime("%Y-%m-%d"),
@@ -376,13 +377,31 @@ class AnalyticsTools:
                 "granularity": granularity,
                 "trend_data": trend_data,
                 "statistics": {
+=======
+                "summary": {
+                    "description": f"话题「{topic}」的热度趋势分析",
+                    "topic": topic,
+                    "date_range": {
+                        "start": start_date.strftime("%Y-%m-%d"),
+                        "end": end_date.strftime("%Y-%m-%d"),
+                        "total_days": total_days
+                    },
+                    "granularity": granularity,
+>>>>>>> upstream/master
                     "total_mentions": sum(counts),
                     "average_mentions": round(sum(counts) / len(counts), 2) if counts else 0,
                     "peak_count": max_count,
                     "peak_time": peak_time,
+<<<<<<< HEAD
                     "change_rate": round(change_rate, 2)
                 },
                 "trend_direction": "上升" if change_rate > 10 else "下降" if change_rate < -10 else "稳定"
+=======
+                    "change_rate": round(change_rate, 2),
+                    "trend_direction": "上升" if change_rate > 10 else "下降" if change_rate < -10 else "稳定"
+                },
+                "data": trend_data
+>>>>>>> upstream/master
             }
 
         except MCPError as e:
@@ -608,10 +627,20 @@ class AnalyticsTools:
 
             return {
                 "success": True,
+<<<<<<< HEAD
                 "cooccurrence_pairs": result_pairs,
                 "total_pairs": len(result_pairs),
                 "min_frequency": min_frequency,
                 "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+=======
+                "summary": {
+                    "description": "关键词共现分析结果",
+                    "total": len(result_pairs),
+                    "min_frequency": min_frequency,
+                    "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                },
+                "data": result_pairs
+>>>>>>> upstream/master
             }
 
         except MCPError as e:
@@ -779,8 +808,14 @@ class AnalyticsTools:
                 "success": True,
                 "method": "ai_prompt_generation",
                 "summary": {
+<<<<<<< HEAD
                     "total_found": len(deduplicated_news),
                     "returned_count": len(selected_news),
+=======
+                    "description": "情感分析数据和AI提示词",
+                    "total_found": len(deduplicated_news),
+                    "returned": len(selected_news),
+>>>>>>> upstream/master
                     "requested_limit": limit,
                     "duplicates_removed": len(all_news_items) - len(deduplicated_news),
                     "topic": topic,
@@ -789,7 +824,11 @@ class AnalyticsTools:
                     "sorted_by_weight": sort_by_weight
                 },
                 "ai_prompt": ai_prompt,
+<<<<<<< HEAD
                 "news_sample": selected_news,
+=======
+                "data": selected_news,
+>>>>>>> upstream/master
                 "usage_note": "请将 ai_prompt 字段的内容发送给 AI 进行情感分析"
             }
 
@@ -993,13 +1032,23 @@ class AnalyticsTools:
             result = {
                 "success": True,
                 "summary": {
+<<<<<<< HEAD
                     "total_found": len(similar_items),
                     "returned_count": len(result_items),
+=======
+                    "description": "相似新闻搜索结果",
+                    "total_found": len(similar_items),
+                    "returned": len(result_items),
+>>>>>>> upstream/master
                     "requested_limit": limit,
                     "threshold": threshold,
                     "reference_title": reference_title
                 },
+<<<<<<< HEAD
                 "similar_news": result_items
+=======
+                "data": result_items
+>>>>>>> upstream/master
             }
 
             if len(similar_items) < limit:
@@ -1123,12 +1172,24 @@ class AnalyticsTools:
 
             return {
                 "success": True,
+<<<<<<< HEAD
                 "entity": entity,
                 "entity_type": entity_type or "auto",
                 "related_news": result_news,
                 "total_found": len(related_news),
                 "returned_count": len(result_news),
                 "sorted_by_weight": sort_by_weight,
+=======
+                "summary": {
+                    "description": f"实体「{entity}」相关新闻",
+                    "entity": entity,
+                    "entity_type": entity_type or "auto",
+                    "total_found": len(related_news),
+                    "returned": len(result_news),
+                    "sorted_by_weight": sort_by_weight
+                },
+                "data": result_news,
+>>>>>>> upstream/master
                 "related_keywords": [
                     {"keyword": k, "count": v}
                     for k, v in entity_context.most_common(10)
@@ -1717,18 +1778,39 @@ class AnalyticsTools:
             if not viral_topics:
                 return {
                     "success": True,
+<<<<<<< HEAD
                     "viral_topics": [],
                     "total_detected": 0,
+=======
+                    "summary": {
+                        "description": "异常热度检测结果",
+                        "total": 0,
+                        "threshold": threshold,
+                        "time_window": time_window
+                    },
+                    "data": [],
+>>>>>>> upstream/master
                     "message": f"未检测到热度增长超过 {threshold} 倍的话题"
                 }
 
             return {
                 "success": True,
+<<<<<<< HEAD
                 "viral_topics": viral_topics,
                 "total_detected": len(viral_topics),
                 "threshold": threshold,
                 "time_window": time_window,
                 "detection_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+=======
+                "summary": {
+                    "description": "异常热度检测结果",
+                    "total": len(viral_topics),
+                    "threshold": threshold,
+                    "time_window": time_window,
+                    "detection_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                },
+                "data": viral_topics
+>>>>>>> upstream/master
             }
 
         except MCPError as e:
@@ -1886,11 +1968,23 @@ class AnalyticsTools:
 
             return {
                 "success": True,
+<<<<<<< HEAD
                 "predicted_topics": predicted_topics[:20],  # 返回TOP 20
                 "total_predicted": len(predicted_topics),
                 "lookahead_hours": lookahead_hours,
                 "confidence_threshold": confidence_threshold,
                 "prediction_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+=======
+                "summary": {
+                    "description": "热点话题预测结果",
+                    "total": len(predicted_topics),
+                    "returned": min(20, len(predicted_topics)),
+                    "lookahead_hours": lookahead_hours,
+                    "confidence_threshold": confidence_threshold,
+                    "prediction_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                },
+                "data": predicted_topics[:20],  # 返回TOP 20
+>>>>>>> upstream/master
                 "note": "预测基于历史趋势，实际结果可能有偏差"
             }
 
@@ -2071,8 +2165,17 @@ class AnalyticsTools:
             if not all_news:
                 return {
                     "success": True,
+<<<<<<< HEAD
                     "aggregated_news": [],
                     "total": 0,
+=======
+                    "summary": {
+                        "description": "跨平台新闻聚合结果",
+                        "total": 0,
+                        "returned": 0
+                    },
+                    "data": [],
+>>>>>>> upstream/master
                     "message": "未找到新闻数据"
                 }
 
@@ -2100,9 +2203,16 @@ class AnalyticsTools:
             return {
                 "success": True,
                 "summary": {
+<<<<<<< HEAD
                     "original_count": total_original,
                     "aggregated_count": total_aggregated,
                     "returned_count": len(results),
+=======
+                    "description": "跨平台新闻聚合结果",
+                    "original_count": total_original,
+                    "aggregated_count": total_aggregated,
+                    "returned": len(results),
+>>>>>>> upstream/master
                     "deduplication_rate": f"{dedup_rate * 100:.1f}%",
                     "similarity_threshold": similarity_threshold,
                     "date_range": {
@@ -2110,7 +2220,11 @@ class AnalyticsTools:
                         "end": end_date.strftime("%Y-%m-%d")
                     }
                 },
+<<<<<<< HEAD
                 "aggregated_news": results,
+=======
+                "data": results,
+>>>>>>> upstream/master
                 "statistics": {
                     "platform_coverage": dict(platform_coverage),
                     "multi_platform_news": len([a for a in aggregated if len(a["platforms"]) > 1]),
@@ -2282,6 +2396,7 @@ class AnalyticsTools:
 
             # 根据对比类型执行不同的分析
             if compare_type == "overview":
+<<<<<<< HEAD
                 result = self._compare_overview(data1, data2, date_range1, date_range2, top_n)
             elif compare_type == "topic_shift":
                 result = self._compare_topic_shift(data1, data2, date_range1, date_range2, top_n)
@@ -2303,6 +2418,35 @@ class AnalyticsTools:
 
             if topic:
                 result["topic_filter"] = topic
+=======
+                analysis_result = self._compare_overview(data1, data2, date_range1, date_range2, top_n)
+            elif compare_type == "topic_shift":
+                analysis_result = self._compare_topic_shift(data1, data2, date_range1, date_range2, top_n)
+            else:  # platform_activity
+                analysis_result = self._compare_platform_activity(data1, data2, date_range1, date_range2)
+
+            result = {
+                "success": True,
+                "summary": {
+                    "description": f"时期对比分析（{compare_type}）",
+                    "compare_type": compare_type,
+                    "periods": {
+                        "period1": {
+                            "start": date_range1[0].strftime("%Y-%m-%d"),
+                            "end": date_range1[1].strftime("%Y-%m-%d")
+                        },
+                        "period2": {
+                            "start": date_range2[0].strftime("%Y-%m-%d"),
+                            "end": date_range2[1].strftime("%Y-%m-%d")
+                        }
+                    }
+                },
+                "data": analysis_result
+            }
+
+            if topic:
+                result["summary"]["topic_filter"] = topic
+>>>>>>> upstream/master
 
             return result
 

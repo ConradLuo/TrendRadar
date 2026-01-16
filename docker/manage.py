@@ -296,6 +296,15 @@ def show_config():
         "NTFY_TOKEN",
         "BARK_URL",
         "SLACK_WEBHOOK_URL",
+<<<<<<< HEAD
+=======
+        # AI 分析配置
+        "AI_ANALYSIS_ENABLED",
+        "AI_API_KEY",
+        "AI_PROVIDER",
+        "AI_MODEL",
+        "AI_BASE_URL",
+>>>>>>> upstream/master
         # 远程存储配置
         "S3_BUCKET_NAME",
         "S3_ACCESS_KEY_ID",

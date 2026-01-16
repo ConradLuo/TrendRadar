@@ -68,10 +68,21 @@ class DataQueryTools:
             )
 
             return {
+<<<<<<< HEAD
                 "news": news_list,
                 "total": len(news_list),
                 "platforms": platforms,
                 "success": True
+=======
+                "success": True,
+                "summary": {
+                    "description": "最新一批爬取的新闻数据",
+                    "total": len(news_list),
+                    "returned": len(news_list),
+                    "platforms": platforms or "全部平台"
+                },
+                "data": news_list
+>>>>>>> upstream/master
             }
 
         except MCPError as e:
@@ -287,12 +298,25 @@ class DataQueryTools:
             )
 
             return {
+<<<<<<< HEAD
                 "news": news_list,
                 "total": len(news_list),
                 "date": target_date.strftime("%Y-%m-%d"),
                 "date_range": date_range,
                 "platforms": platforms,
                 "success": True
+=======
+                "success": True,
+                "summary": {
+                    "description": f"按日期查询的新闻（{target_date.strftime('%Y-%m-%d')}）",
+                    "total": len(news_list),
+                    "returned": len(news_list),
+                    "date": target_date.strftime("%Y-%m-%d"),
+                    "date_range": date_range,
+                    "platforms": platforms or "全部平台"
+                },
+                "data": news_list
+>>>>>>> upstream/master
             }
 
         except MCPError as e:
@@ -316,14 +340,26 @@ class DataQueryTools:
     def get_latest_rss(
         self,
         feeds: Optional[List[str]] = None,
+<<<<<<< HEAD
+=======
+        days: int = 1,
+>>>>>>> upstream/master
         limit: Optional[int] = None,
         include_summary: bool = False
     ) -> Dict:
         """
+<<<<<<< HEAD
         获取最新的 RSS 数据
 
         Args:
             feeds: RSS 源 ID 列表，如 ['hacker-news', '36kr']
+=======
+        获取最新的 RSS 数据（支持多日查询）
+
+        Args:
+            feeds: RSS 源 ID 列表，如 ['hacker-news', '36kr']
+            days: 获取最近 N 天的数据，默认 1（仅今天），最大 30 天
+>>>>>>> upstream/master
             limit: 返回条数限制，默认50
             include_summary: 是否包含摘要，默认False（节省token）
 
@@ -335,15 +371,31 @@ class DataQueryTools:
 
             rss_list = self.data_service.get_latest_rss(
                 feeds=feeds,
+<<<<<<< HEAD
+=======
+                days=days,
+>>>>>>> upstream/master
                 limit=limit,
                 include_summary=include_summary
             )
 
             return {
+<<<<<<< HEAD
                 "rss": rss_list,
                 "total": len(rss_list),
                 "feeds": feeds,
                 "success": True
+=======
+                "success": True,
+                "summary": {
+                    "description": f"最近 {days} 天的 RSS 订阅数据" if days > 1 else "最新的 RSS 订阅数据",
+                    "total": len(rss_list),
+                    "returned": len(rss_list),
+                    "days": days,
+                    "feeds": feeds or "全部订阅源"
+                },
+                "data": rss_list
+>>>>>>> upstream/master
             }
 
         except MCPError as e:
@@ -397,12 +449,25 @@ class DataQueryTools:
             )
 
             return {
+<<<<<<< HEAD
                 "rss": rss_list,
                 "total": len(rss_list),
                 "keyword": keyword,
                 "feeds": feeds,
                 "days": days,
                 "success": True
+=======
+                "success": True,
+                "summary": {
+                    "description": f"RSS 搜索结果（关键词: {keyword}）",
+                    "total": len(rss_list),
+                    "returned": len(rss_list),
+                    "keyword": keyword,
+                    "feeds": feeds or "全部订阅源",
+                    "days": days
+                },
+                "data": rss_list
+>>>>>>> upstream/master
             }
 
         except MCPError as e:

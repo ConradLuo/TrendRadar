@@ -26,6 +26,7 @@ class SearchTools:
             project_root: 项目根目录
         """
         self.data_service = DataService(project_root)
+<<<<<<< HEAD
         # 中文停用词列表
         self.stopwords = {
             '的', '了', '在', '是', '我', '有', '和', '就', '不', '人', '都', '一',
@@ -34,6 +35,8 @@ class SearchTools:
             '以', '及', '等', '但', '或', '而', '于', '中', '由', '可', '可以', '已',
             '已经', '还', '更', '最', '再', '因为', '所以', '如果', '虽然', '然而'
         }
+=======
+>>>>>>> upstream/master
 
     def search_news_unified(
         self,
@@ -211,8 +214,14 @@ class SearchTools:
             result = {
                 "success": True,
                 "summary": {
+<<<<<<< HEAD
                     "total_found": len(all_matches),
                     "returned_count": len(results),
+=======
+                    "description": f"新闻搜索结果（{search_mode}模式）",
+                    "total_found": len(all_matches),
+                    "returned": len(results),
+>>>>>>> upstream/master
                     "requested_limit": limit,
                     "search_mode": search_mode,
                     "query": query,
@@ -220,7 +229,11 @@ class SearchTools:
                     "time_range": time_range_desc,
                     "sort_by": sort_by
                 },
+<<<<<<< HEAD
                 "results": results
+=======
+                "data": results
+>>>>>>> upstream/master
             }
 
             if search_mode == "fuzzy":
@@ -477,11 +490,16 @@ class SearchTools:
         # 使用正则表达式分词（中文和英文）
         words = re.findall(r'[\w]+', text)
 
+<<<<<<< HEAD
         # 过滤停用词和短词
         keywords = [
             word for word in words
             if word and len(word) >= min_length and word not in self.stopwords
         ]
+=======
+        # 过滤短词
+        keywords = [word for word in words if word and len(word) >= min_length]
+>>>>>>> upstream/master
 
         return keywords
 
@@ -703,8 +721,14 @@ class SearchTools:
             result = {
                 "success": True,
                 "summary": {
+<<<<<<< HEAD
                     "total_found": len(all_related_news),
                     "returned_count": len(results),
+=======
+                    "description": "历史相关新闻搜索结果",
+                    "total_found": len(all_related_news),
+                    "returned": len(results),
+>>>>>>> upstream/master
                     "requested_limit": limit,
                     "threshold": threshold,
                     "reference_title": reference_title,
@@ -715,7 +739,11 @@ class SearchTools:
                         "end": search_end.strftime("%Y-%m-%d")
                     }
                 },
+<<<<<<< HEAD
                 "results": results,
+=======
+                "data": results,
+>>>>>>> upstream/master
                 "statistics": {
                     "platform_distribution": dict(platform_distribution),
                     "date_distribution": dict(date_distribution),
@@ -881,8 +909,14 @@ class SearchTools:
             return {
                 "success": True,
                 "summary": {
+<<<<<<< HEAD
                     "total_found": len(all_related_news),
                     "returned_count": len(results),
+=======
+                    "description": "相关新闻搜索结果",
+                    "total_found": len(all_related_news),
+                    "returned": len(results),
+>>>>>>> upstream/master
                     "reference_title": reference_title,
                     "threshold": threshold,
                     "date_range": {
@@ -890,7 +924,11 @@ class SearchTools:
                         "end": max(search_dates).strftime("%Y-%m-%d")
                     } if search_dates else None
                 },
+<<<<<<< HEAD
                 "results": results,
+=======
+                "data": results,
+>>>>>>> upstream/master
                 "statistics": {
                     "platform_distribution": dict(platform_dist),
                     "date_distribution": dict(date_dist)
